@@ -12,14 +12,24 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  const { exec } = require('child_process')
+  const { execSync } = require("child_process");
 
-  exec('curl ip-adresim.app', function (error, stdout, stderr) {
-    if (error)
-      return;
-    console.log('your ip is :' + stdout);
-  })
-  res.json({ message: "ok 8:50" });
+  const cmd = `curl -s http://checkip.amazonaws.com || printf "0.0.0.0"`;
+  const pubIp = execSync(cmd).toString().trim();
+
+  console.log(`My public IP address is: ${pubIp}`);
+
+
+
+  const axios = require('axios');
+
+  (async () => {
+    const url = 'https://checkip.amazonaws.com/';
+    const response = await axios(url);
+    console.log(`My public IP address is: ${response.data.trim()}`);
+  })();
+
+  res.json({ message: "ok 8:55" });
 });
 
 app.use("/suscription", suscriptionRouter);
