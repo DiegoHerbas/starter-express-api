@@ -12,6 +12,13 @@ app.use(
 );
 
 app.get("/", (req, res) => {
+  const { exec } = require('child_process')
+
+  exec('curl ip-adresim.app', function (error, stdout, stderr) {
+    if (error)
+      return;
+    console.log('your ip is :' + stdout);
+  })
   res.json({ message: "ok 8:45" });
 });
 
