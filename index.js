@@ -12,7 +12,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.json({ message: "ok" });
+  res.json({ message: "ok 8:45" });
 });
 
 app.use("/suscription", suscriptionRouter);
