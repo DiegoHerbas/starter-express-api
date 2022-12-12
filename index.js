@@ -14,14 +14,8 @@ app.use(
 app.get("/", (req, res) => {
   const { execSync } = require("child_process");
 
-  const cmd = `curl -s http://checkip.amazonaws.com || printf "0.0.0.0"`;
-  const pubIp = execSync(cmd).toString().trim();
-
-  console.log(`My public IP address is: ${pubIp}`);
-
-
-
   const axios = require('axios');
+
 
   (async () => {
     const url = 'https://checkip.amazonaws.com/';
@@ -29,7 +23,27 @@ app.get("/", (req, res) => {
     console.log(`My public IP address is: ${response.data.trim()}`);
   })();
 
-  res.json({ message: "ok 8:55" });
+  (async () => {
+    const url = 'https://api.ipify.org/';
+    const response = await axios(url);
+    console.log(`My public api address is: ${response.data.trim()}`);
+  })();
+
+  (async () => {
+    const url = 'https://tnx.nl/ip/';
+    const response = await axios(url);
+    console.log(`My public tnx address is: ${response.data.trim()}`);
+  })();
+
+
+
+  (async () => {
+    const url = 'https://api.infoip.io/';
+    const response = await axios(url);
+    console.log(`My public infoip address is: ${JSON.stringify(response.data)}`);
+  })();
+
+  res.json({ message: "ok 9:00" });
 });
 
 app.use("/suscription", suscriptionRouter);
