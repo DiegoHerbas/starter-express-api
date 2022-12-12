@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
       return;
     console.log('your ip is :' + stdout);
   })
-  res.json({ message: "ok 8:45" });
+  res.json({ message: "ok 8:50" });
 });
 
 app.use("/suscription", suscriptionRouter);
